@@ -5,6 +5,7 @@ import axios from "axios";
 import { handleError } from "../lib/helper";
 import { useEffect } from "react";
 import { toast } from "react-toastify";
+import ProductsTab from "../components/Product/ProductsTab";
 
 export default function Home({ productTab, error }) {
   useEffect(() => {
@@ -13,6 +14,7 @@ export default function Home({ productTab, error }) {
   return (
     <div>
       <Features />
+      {productTab && <ProductsTab tabs={productTab}/>}
     </div>
   );
 }
