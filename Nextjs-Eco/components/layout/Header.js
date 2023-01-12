@@ -6,7 +6,7 @@ const Header = () => {
     <div>
         <div className="hero_area">
             <div className="bg-box">
-                <Image src={heroImage} placeholder='blur' layout='fill'/>
+                <Image src={heroImage} placeholder='blur'  alt='heroImage'/>
             </div>
         
             <header className="header_section">

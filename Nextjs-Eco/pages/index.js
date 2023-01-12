@@ -4,11 +4,11 @@ import Features from "../components/features";
 import axios from "axios";
 import { handleError } from "../lib/helper";
 import { useEffect } from "react";
-import { Toast } from "react-toastify";
+import { toast } from "react-toastify";
 
 export default function Home({ productTab, error }) {
   useEffect(() => {
-    error && Toast.error(error);
+    error && toast.error(error);
   }, [error]);
   return (
     <div>
@@ -20,7 +20,7 @@ export default function Home({ productTab, error }) {
 export async function getServerSideProps() {
   try {
     const res = await axios.get(
-      "http://127.0.0.1:8000/api/products/products-tabs"
+      "/products/products-tabs"
     );
     console.log(res);
     return {
