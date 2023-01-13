@@ -9,7 +9,7 @@ import axios from 'axios';
 
 
 
-axios.defaults.baseURL = process.env.BACKEND_URL;
+axios.defaults.baseURL = process.env.NEXT_PUBLIC_BACKEND_URL;
 function MyApp({ Component, pageProps }) {
   useEffect(()=>{
     import('bootstrap/dist/js/bootstrap.bundle.js')
