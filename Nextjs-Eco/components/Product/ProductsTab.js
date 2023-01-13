@@ -1,5 +1,6 @@
 import React from "react";
 import Product from "./Product";
+import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 
 const ProductsTab = ({ tabs }) => {
   return (
@@ -9,26 +10,33 @@ const ProductsTab = ({ tabs }) => {
           <h2>منو محصولات</h2>
         </div>
 
-        <ul className="filters_menu">
-          {tabs.tabList.map((list, index) => (
-            <li key={index}>{list}</li>
-          ))}
-        </ul>
+        <Tabs selectedTabClassName={"active"}>
+          <TabList>
+            <ul className="filters_menu">
+              {tabs.tabList.map((list, index) => (
+                <Tab key={index}>{list}</Tab>
+              ))}
+            </ul>
+          </TabList>
 
-        <div className="filters-content">
-          {tabs.tabPanel.map((panel, index) => (
-            <div key={index} className="row grid">
-                {panel.map((product, index) => (
-       
-              <div key={index} className="col-sm-6 col-lg-4">
-               <Product product={product} />
-              </div>
-         
-          ))}
-              
+          <TabList>
+            <div className="filters-content">
+              {tabs.tabPanel.map((panel, index) => (
+                <TabPanel key={index}>
+                <div key={index} className="row grid">
+                  {panel.map((product, index) => (
+                    <div key={index} className="col-sm-6 col-lg-4">
+                      <Product product={product} />
+                    </div>
+                  ))}
+                </div>
+                </TabPanel>
+
+              ))}
             </div>
-          ))}
-        </div>
+          </TabList>
+        </Tabs>
+
         <div className="btn-box">
           <a href="">مشاهده بیشتر</a>
         </div>
