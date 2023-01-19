@@ -6,10 +6,13 @@ import Header from '../components/layout/Header';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
-
+import Router from 'next/router';
+import '@reduxjs/toolkit'
 
 
 axios.defaults.baseURL = process.env.NEXT_PUBLIC_BACKEND_URL;
+
+
 function MyApp({ Component, pageProps }) {
   useEffect(()=>{
     import('bootstrap/dist/js/bootstrap.bundle.js')
