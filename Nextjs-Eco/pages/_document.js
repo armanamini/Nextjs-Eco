@@ -2,7 +2,7 @@ import { Html, Head, Main, NextScript } from 'next/document'
 
 export default function Document() {
   return (
-    <Html dir='rtl' lang='fa'>
+    <Html lang='fa' dir='rtl'>
       <Head />
       <body>
         <Main />
@@ -10,5 +10,4 @@ export default function Document() {
       </body>
     </Html>
   )
-  
 }

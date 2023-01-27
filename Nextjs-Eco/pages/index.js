@@ -1,48 +1,66 @@
-import Head from "next/head";
-import Image from "next/image";
-import Features from "../components/features";
+import About from "@/components/About";
+import ContactForm from "@/components/contact/ContactForm";
+import Features from "@/components/Features";
+import ProductsTab from "@/components/product/ProductsTab";
 import axios from "axios";
-import { handleError } from "../lib/helper";
+import { handleError } from "lib/helper";
 import { useEffect } from "react";
 import { toast } from "react-toastify";
-import ProductsTab from "../components/Product/ProductsTab";
-import About from "../components/About/About";
-import ContactForm from "../components/Contact/ContactForm";
-import dynamic from "next/dynamic";
-import Footer from "../components/layout/Footer";
-import Contact from "./contact";
+import dynamic from 'next/dynamic'
 
+const Map = dynamic(() => import('@/components/contact/Map'), { ssr: false })
 
-
-export default function Home({ productTab, error }) {
+const Home = ({ productsTab, error }) => {
   useEffect(() => {
-    error && toast.error(error);
-  }, [error]);
+    error && toast.error(error)
+  }, [error])
+
   return (
-    <div>
+    <>
       <Features />
-      {productTab && <ProductsTab tabs={productTab} />}
+      {productsTab && <ProductsTab tabs={productsTab} />}
       <About />
-      <Contact />
-      <Footer />
-    </div>
-  );
+      <section className="book_section layout_padding">
+        <div className="container">
+          <div className="heading_container">
+            <h2>
+              تماس با ما
+            </h2>
+          </div>
+          <div className="row">
+            <div className="col-md-6">
+              <div className="form_container">
+                <ContactForm />
+              </div>
+            </div>
+            <div className="col-md-6">
+              <div className="map_container ">
+                <Map />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </>
+  )
 }
+
+export default Home;
 
 export async function getServerSideProps() {
   try {
-    const res = await axios.get("/products/products-tabs");
-    console.log(res);
+    const res = await axios.get("/products/products-tabs")
+    // console.log(res.data.data);
     return {
       props: {
-        productTab: res.data.data,
-      },
-    };
+        productsTab: res.data.data
+      }
+    }
   } catch (err) {
     return {
       props: {
-        error: handleError(err),
-      },
-    };
+        error: handleError(err)
+      }
+    }
   }
 }
